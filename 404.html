@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Opening link…</title></head><body><p>Opening link…</p><script>
+/* GitHub Pages fallback. Preserve repository base and requested slug as a query parameter. */
+const segments=location.pathname.split('/').filter(Boolean);
+const isProjectSite=location.hostname.endsWith('github.io') && segments.length>1;
+const base=isProjectSite?'/'+segments[0]+'/':'/';
+const requested=location.pathname+location.search+location.hash;
+location.replace(base+'?redirect_path='+encodeURIComponent(requested));
+</script></body></html>
