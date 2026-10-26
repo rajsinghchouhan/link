@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Redirecting…</title></head><body><p id="msg">Redirecting…</p><script>
+(async()=>{const id=new URLSearchParams(location.search).get("id");if(!id||!/^[a-z0-9][a-z0-9_-]{0,49}$/i.test(id)){document.getElementById("msg").textContent="Invalid redirect link.";return;}
+try{const response=await fetch("../redirects.json?ts="+Date.now(),{cache:"no-store"});if(!response.ok)throw Error();const links=await response.json();const target=links[id.toLowerCase()];if(!target){document.getElementById("msg").textContent="This redirect link was not found.";return;}const u=new URL(target);if(!["http:","https:"].includes(u.protocol))throw Error();location.replace(u.href);}catch(e){document.getElementById("msg").textContent="Could not load redirect settings. Please try again later.";}
+})();
+</script></body></html>
